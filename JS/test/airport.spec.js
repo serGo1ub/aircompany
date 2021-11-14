@@ -33,7 +33,7 @@ describe('Airport Test', () => {
     it('should have military planes with transport type', () => {
         const airport = new Airport(planes);
         assert.isTrue(
-          airport.getTransportMilitaryPlanes().some(militaryPlane => militaryPlane.getMilitaryType() === MilitaryType.TRANSPORT)
+          airport.getTransportMilitaryPlanes().every(militaryPlane => militaryPlane.getMilitaryType() === MilitaryType.TRANSPORT)
         );
     });
 
@@ -57,8 +57,8 @@ describe('Airport Test', () => {
 
     it('should check that experimental planes has classification level higher than unclassified', () => {
         const airport = new Airport(planes);
-        assert.isFalse(
-          airport.getExperimentalPlanes().every(plane => plane.classificationLevel === ClassificationLevel.UNCLASSIFIED)
+        assert.isTrue(
+          airport.getExperimentalPlanes().every(plane => plane.classificationLevel !== ClassificationLevel.UNCLASSIFIED)
         );
     });
 
