@@ -39,7 +39,7 @@ describe('Airport Test', () => {
 
     it('should check passenger plane with max capacity', () => {
         const airport = new Airport(planes);
-        assert.isFalse( airport.getPassengerPlaneWithMaxPassengersCapacity() === planeWithMaxPassengerCapacity);
+        assert.deepEqual(airport.getPassengerPlaneWithMaxPassengersCapacity(), planeWithMaxPassengerCapacity);
     });
 
     it('check sort planes by max load capacity', () => {
@@ -58,7 +58,7 @@ describe('Airport Test', () => {
     it('should check that experimental planes has classification level higher than unclassified', () => {
         const airport = new Airport(planes);
         assert.isFalse(
-          airport.getExperimentalPlanes().some(plane => plane.classificationLevel === ClassificationLevel.UNCLASSIFIED)
+          airport.getExperimentalPlanes().every(plane => plane.classificationLevel === ClassificationLevel.UNCLASSIFIED)
         );
     });
 
